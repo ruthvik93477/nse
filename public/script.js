@@ -299,6 +299,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set the value of the date input field
     document.getElementById("date").value = formattedDate;
 
+    async function reloadPage(){
+        window.location.reload()
+    }
+
     let chartInstance = null;
 
 async function showChart(name) {
@@ -349,3 +353,4 @@ async function showChart(name) {
 
   new bootstrap.Modal(document.getElementById("chartModal")).show();
 }
+
