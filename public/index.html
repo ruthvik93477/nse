@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Company Daily Growth</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body class="bg-light">
+  <div class="container py-3">
+
+    <header class="mb-3">
+      <h1 class="h4 text-center">Company Daily Growth</h1>
+      <p class="text-muted text-center small">Add daily % change and track growth / fall per company</p>
+    </header>
+
+    <main>
+      <!-- Add form -->
+      <div class="card mb-3">
+        <div class="card-body">
+          <form id="addForm" class="row g-2">
+            <div class="col-12 col-md-5">
+              <label class="form-label small">Company name</label>
+              <input id="name" class="form-control form-control-sm" type="text" placeholder="e.g. Acme Ltd" required>
+            </div>
+
+            <div class="col-6 col-md-3">
+              <label class="form-label small">Change</label>
+              <select id="type" class="form-select form-select-sm" required>
+                <option value="Increased">Increased</option>
+                <option value="Decreased">Decreased</option>
+              </select>
+            </div>
+
+            <div class="col-4 col-md-2">
+              <label class="form-label small">% value</label>
+              <input id="percent" class="form-control form-control-sm" type="number" step="0.01" min="0" placeholder="e.g. 2.4" required>
+            </div>
+
+            <div class="col-6 col-md-2">
+              <label class="form-label small">Date</label>
+              <input id="date" class="form-control form-control-sm" type="date">
+            </div>
+
+            <div class="col-12 d-grid mt-2">
+              <button class="btn btn-primary btn-sm" type="submit">Add / Append</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="row gy-2 align-items-end">
+            <div class="col-12 col-md-5">
+              <label class="form-label small">Search company</label>
+              <input id="searchQuery" class="form-control form-control-sm" type="text" placeholder="Search by name">
+            </div>
+
+            <div class="col-4 col-md-2">
+              <label class="form-label small">Day</label>
+              <input id="filterDay" class="form-control form-control-sm" type="number" min="1" max="31" placeholder="DD">
+            </div>
+
+            <div class="col-4 col-md-2">
+              <label class="form-label small">Month</label>
+              <input id="filterMonth" class="form-control form-control-sm" type="number" min="1" max="12" placeholder="MM">
+            </div>
+
+            <div class="col-4 col-md-2">
+              <label class="form-label small">Year</label>
+              <input id="filterYear" class="form-control form-control-sm" type="number" min="1900" max="3000" placeholder="YYYY">
+            </div>
+
+            <div class="col-6 col-md-3">
+              <label class="form-label small">Sort</label>
+              <select id="sort" class="form-select form-select-sm">
+                <option value="name_asc">Name (A → Z)</option>
+                <option value="name_desc">Name (Z → A)</option>
+              </select>
+            </div>
+
+            <div class="col-6 col-md-3 d-grid">
+              <button id="applyFilters" class="btn btn-outline-primary btn-sm">Apply</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div id="results" class="mb-5"></div>
+    </main>
+    <!-- Modal -->
+<div class="modal fade" id="chartModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="chartTitle">Company Growth Chart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <canvas id="growthChart" height="120"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <footer class="text-center small text-muted">
+      Built for mobile. Data stored in MongoDB.
+    </footer>
+  </div>
+
+  <script src="/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
